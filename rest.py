@@ -12,7 +12,7 @@ from functools import wraps
 # Create the application instance
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisismysecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///c:\\Users\\olivier\\Documents\\python\\rest\\database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///d:\\hpe\\git\\olivier\\rest\\database.db'
 
 db = SQLAlchemy(app)
 
@@ -141,6 +141,7 @@ def modify_user(current_user, public_id):
 def login():
     auth = request.authorization
 
+    print("username: {} password: {}".format(auth.username, auth.password))
     if not auth or not auth.username or not auth.password:
         return make_response('Could not verify', 401, {'WWW-authenticate' : 'Basic realm = "Login required!"'})
 
